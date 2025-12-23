@@ -2,7 +2,7 @@ name: NTU Gym Scraper
 
 on:
   schedule:
-    - cron: '0 * * * *'  # 每小時執行一次 (整點執行)
+    - cron: '*/15 * * * *'  # 每 15 分鐘執行一次
   workflow_dispatch:      # 允許我們手動點擊按鈕來測試
 
 jobs:
