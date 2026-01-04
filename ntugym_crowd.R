@@ -27,6 +27,7 @@ tryCatch({
   # 【關鍵修正】取消註解，並確保檔案正確寫入
   # 如果檔案不存在，則寫入標頭；如果已存在，則附加在後
   file_path <- "ntu_gym_flow.csv"
+  write_header <- !file.exists(file_path)
   write_csv(row, file_path, append = file.exists(file_path))
   
   print("Data successfully scraped and saved.")
@@ -36,3 +37,4 @@ tryCatch({
   message("發生錯誤: ", e$message)
   quit(status = 1) # 讓 GitHub Actions 知道 R 執行失敗
 })
+
