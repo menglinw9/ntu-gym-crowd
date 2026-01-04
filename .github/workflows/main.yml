@@ -20,7 +20,7 @@ jobs:
           Rscript -e 'install.packages(c("rvest", "stringr", "readr", "lubridate"))'
 
       - name: Run Scraper
-        run: Rscript scraper.R
+        run: Rscript ntugym_crowd.R
 
       - name: Commit and Push changes
         run: |
