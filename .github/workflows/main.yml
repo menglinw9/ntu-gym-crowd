@@ -41,4 +41,5 @@ jobs:
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add ntu_gym_flow.csv
           git commit -m "Update gym data: $(date)" || echo "No changes to commit"
-          git push
+          # 修改這裡：明確告訴它推送到 main 分支
+          git push origin HEAD:main
