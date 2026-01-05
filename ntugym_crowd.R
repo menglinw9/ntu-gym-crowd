@@ -23,10 +23,11 @@ tryCatch({
     source_url  = url
   )
 
-  # 修正後的寫入邏輯：
-  # append = TRUE 會直接附加在檔案末端
-  # col_names = !file.exists(file_path) 代表只有第一次建立檔案時才寫入標頭
-  write_csv(row, file_path, append = file.exists(file_path), col_names = !file.exists(file_path))
+  if (!file.exists(file_path)) {
+    write_csv(row, file_path, col_names = TRUE)
+  } else {
+    write_csv(row, file_path, append = TRUE, col_names = FALSE)
+  }
   
   print("Data successfully scraped and saved.")
   print(row)
@@ -35,3 +36,4 @@ tryCatch({
   message("發生錯誤: ", e$message)
   quit(status = 1) 
 })
+
