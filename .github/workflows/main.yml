@@ -55,13 +55,10 @@ jobs:
           
           if [ -f ntu_gym_flow.csv ]; then
             git add ntu_gym_flow.csv
-            # 只有在檔案內容真的有變動時才 commit
-            if git diff --staged --quiet; then
-              echo "No changes to commit"
-            else
-              git commit -m "Update gym data: $(date)"
-              git push
-            fi
+            # 刪除 if git diff 檢查，改用強制 commit
+            # 加上 || echo 確保即便 git 沒抓到變動，工作流也不會中斷 (Exit Code 0)
+            git commit -m "Update gym data: $(date +'%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
+            git push
           else
             echo "Error: ntu_gym_flow.csv not found!"
             exit 1
